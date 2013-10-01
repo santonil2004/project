@@ -32,6 +32,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :test do
+	gem 'rspec-rails'
+end
+
 gem 'mysql2'
 
 # Use ActiveModel has_secure_password
