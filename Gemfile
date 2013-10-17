@@ -36,6 +36,8 @@ group :test do
 	gem 'rspec-rails'
 end
 
+gem 'devise'
+
 gem 'mysql2'
 
 # Use ActiveModel has_secure_password

@@ -1,5 +1,9 @@
 Project::Application.routes.draw do
+  get "home/single"
+  get "home/index"
   resources :categories
+
+  root :to => "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
