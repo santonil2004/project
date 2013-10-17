@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
-    
+
     #@post = Post.new(post_params)
 
     respond_to do |format|
