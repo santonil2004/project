@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :category_id %><br>
-    <%= f.number_field :category_id %>
+    <%= f.select :category_id, Category.all.collect {|x| [x.name, x.id]}, {} %>
   </div>
   <div class="actions">
     <%= f.submit %>

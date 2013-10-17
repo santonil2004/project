@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :description
       t.integer :status
       t.integer :category_id
-
+      t.integer :user_id
       t.timestamps
     end
   end
