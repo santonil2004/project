@@ -1,4 +1,6 @@
 Project::Application.routes.draw do
+  resources :posts
+
   get "home/single"
   get "home/index"
   resources :categories
