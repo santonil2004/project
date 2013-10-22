@@ -11,7 +11,10 @@
       <div class="blogContent">
 
       <p><%= @post.introtext %></p>
-      <p><%= @post.description %></p>
+      <p>
+        <% @raw = @post.description %>
+        <%= @raw.html_safe %>
+      </p>
       <p><%= @post.status %></p>
 
       </div>

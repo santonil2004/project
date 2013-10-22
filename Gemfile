@@ -46,6 +46,7 @@ gem "twitter-bootstrap-rails"
 
 gem 'will_paginate', '~> 3.0'
 
+gem "ckeditor"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
