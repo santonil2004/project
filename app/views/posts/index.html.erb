@@ -24,7 +24,7 @@
        <small>By <%= post.user.email %> Posted in <%= post.category.name %></small>
        <p>
 
-        <% if current_user && current_user.id==post.user_id %>
+      <% if current_user && current_user.id==post.user_id %>
        <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_post_path(post), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -43,6 +43,8 @@
             new_post_path,
             :class => 'btn btn-primary' %>
     </p>
+
+    <%= will_paginate @posts %>
 </div>
 
 
