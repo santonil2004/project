@@ -3,6 +3,7 @@ Project::Application.routes.draw do
   get "page/aboutus"
   get "page/contactus"
   get "page/post"
+  get 'page/post/:id' => 'page#post'
   resources :comments
 
   devise_for :users

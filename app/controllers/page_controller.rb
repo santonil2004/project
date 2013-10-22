@@ -7,6 +7,7 @@ class PageController < ApplicationController
   end
 
   def post
+  	 @post = Post.find(params[:id])
   end
 
   def contactus
