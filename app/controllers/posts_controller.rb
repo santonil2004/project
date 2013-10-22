@@ -7,9 +7,9 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  #def category
-   # @post = Post.find(params[:id])
-  #end
+  def category
+    @posts = Post.includes(:category).where("categories.id" => params[:id])
+  end
 
   # GET /posts/1
   # GET /posts/1.json

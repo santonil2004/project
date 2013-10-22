@@ -64,16 +64,26 @@
           <div class="well sidebar-nav">
             <%= render 'shared/categories'%>
           </div><!--/.well -->
+          <div class="well sidebar-nav">
+           <% if current_user %>
+              <%= "Logged in as: #{current_user.email}" %><Br>
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-mini btn-danger' %>
+            <% else %>
+              <%= link_to 'Sign in', new_user_session_path, class: 'btn bootstrap_flash' %>
+            <% end %>
+
+          </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <!-- for devise--->
-          <% if notice %>
-		  <p class="notice"><%= notice %></p>
-		  <% end %>
-		  <% if alert %>
-		  <p class="alert"><%= alert %></p>
-		  <% end %>
-          <!--@end of for devise-->
+
+          <!--
+          <% #if notice %>
+		        <p class="notice"><%#= notice %></p>
+		      <% #end %>
+		      <% #if alert %>
+		        <p class="alert"><%#= alert %></p>
+		      <% #end %>
+         -->
           <%= bootstrap_flash %>
           <%= yield %>
         </div>

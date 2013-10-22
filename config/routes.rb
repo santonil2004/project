@@ -11,11 +11,13 @@ Project::Application.routes.draw do
     resources :comments
   end
 
+  get 'posts/category/:id' => 'posts#category'
+
   get "home/single"
   get "home/index"
   resources :categories
 
-  root :to => "page#home"
+  root :to => "posts#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

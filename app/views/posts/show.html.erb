@@ -19,13 +19,16 @@
        <p>
        <%= link_to t('.back', :default => t("helpers.links.back")),
               posts_path, :class => 'btn'  %>
-        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+        
+        <% if current_user && current_user.id==@post.user_id%>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_post_path(@post), :class => 'btn' %>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               post_path(@post),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+        <% end%>
         </p>
 
       <hr>
@@ -44,10 +47,13 @@
               <%= comment.description %>
             </div
 
+            <% if current_user && current_user.id==comment.user_id%>
             <p>
+              <%= link_to 'Edit', '/',class: 'btn' %>
               <%#= link_to 'Edit', edit_comment_path(comment) %>
               <%#= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
             </p>
+            <% end%>
       </div>
       <% end %>
     <% end %>
