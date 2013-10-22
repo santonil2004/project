@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h2>Latest Post</h2>
+</div>
+<div class="span8 blogContent">
+
+    <% @latest_post.each do |post| %>
+
+    <div class="row-fluid blogPost">
+      <div class="title">
+        <blockquote>
+          <p><%= link_to post.title, post_path(post) %></p>
+          <small><%= post.created_at.to_formatted_s(:long) %></small>
+        </blockquote>
+      </div>
+
+      <div class="blogContent">
+      <p><%= post.introtext %></p>
+
+      </div>
+       <small>By <%= post.user.email %> Posted in <%= post.category.name %></small>
+    </div>
+    <hr>
+    <% end %>
+</div>
+  
+<!--
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_post_path,
+            :class => 'btn btn-primary' %>-->

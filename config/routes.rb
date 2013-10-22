@@ -1,4 +1,8 @@
 Project::Application.routes.draw do
+  get "page/home"
+  get "page/aboutus"
+  get "page/contactus"
+  get "page/post"
   resources :comments
 
   devise_for :users
@@ -8,7 +12,7 @@ Project::Application.routes.draw do
   get "home/index"
   resources :categories
 
-  root :to => "home#index"
+  root :to => "page#home"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
