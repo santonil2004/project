@@ -4,10 +4,12 @@ Project::Application.routes.draw do
   get "page/contactus"
   get "page/post"
   get 'page/post/:id' => 'page#post'
-  resources :comments
 
   devise_for :users
-  resources :posts
+
+  resources :posts do
+    resources :comments
+  end
 
   get "home/single"
   get "home/index"

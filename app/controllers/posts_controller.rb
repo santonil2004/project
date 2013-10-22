@@ -7,9 +7,18 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  #def category
+   # @post = Post.find(params[:id])
+  #end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comment = @post.comments.new
+
+    #@comments = @post.comments.all
+    #@comments =  @post.comments.all
+
   end
 
   # GET /posts/new
