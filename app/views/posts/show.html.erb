@@ -52,9 +52,8 @@
 
             <% if current_user && current_user.id==comment.user_id%>
             <p>
-              <%= link_to 'Edit', '/',class: 'btn' %>
-              <%#= link_to 'Edit', edit_comment_path(comment) %>
-              <%#= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
+              <%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
             </p>
             <% end%>
       </div>

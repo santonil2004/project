@@ -19,6 +19,11 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @post = Post.find(params[:post_id])
+
+    @comment = Comment.find(params[:id])
+    
+    # @comment.user_id = current_user.id
   end
 
   # POST /comments
@@ -53,25 +58,36 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
+
+    @post = Post.find(params[:post_id])
+
+    @comment = Comment.find(params[:id])
+
+    @comment.user_id = current_user.id
+
+
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to(post_url(@post), notice: 'Comment was successfully updated.')
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        redirect_to post_url(@post), alert: 'Comment could not be updated.'
       end
-    end
+   
   end
 
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
+
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+
+    if @comment.destroy
+        redirect_to(post_url(@post), notice: 'Comment Deleted successfully.')
+      else
+        redirect_to post_url(@post), alert: 'Comment could not be deleted.'
     end
+
+    
   end
 
   private
@@ -83,6 +99,6 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       #params.require(:comment).permit(:description, :status, :post_id, :user_id)
-      params.require(:comment).permit(:description)
+      params.require(:comment).permit(:description, :post_id)
     end
 end
