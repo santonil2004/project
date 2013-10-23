@@ -8,5 +8,5 @@ class User < ActiveRecord::Base
    has_many :posts
    has_many :comments
 
-   validates:full_name, :email, :password, {:presence=>true}
+   validates:full_name, :email, :password, :group_id, {:presence=>true}
 end
