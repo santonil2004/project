@@ -1,0 +1,19 @@
+
+
+
+<%= form_tag("/posts", method: "get") do %>
+<ul class="nav nav-list">
+  <li class="nav-header">
+    <%= label_tag(:query, "Search for:") %>
+  </li>
+</ul>
+  <% 
+  if params[:query]
+   q = "#{params[:query]}" 
+  else
+   q="" 
+  end
+  %>
+  <%= text_field_tag(:query, q) %>
+  <%= submit_tag("Search", class: 'btn-primary') %>
+<% end %>

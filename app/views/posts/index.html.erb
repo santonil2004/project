@@ -1,6 +1,11 @@
 <%- model_class = Post -%>
 
-
+<%#= params.inspect %>
+<div class="page-header">
+<% if @count && params[:query].length > 0 %>
+  <h5><%= @count %> results found for keyword <em><%= params[:query] %></em></h5>
+<% end  %>
+</div>
 <div class="span8 blogContent">
 
     <% @posts.each do |post| %>

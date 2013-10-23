@@ -12,6 +12,7 @@ Project::Application.routes.draw do
   end
 
   get 'posts/category/:id' => 'posts#category'
+  get 'posts/query/:string' => 'posts#index'
 
   get "home/single"
   get "home/index"

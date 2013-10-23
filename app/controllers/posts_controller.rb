@@ -14,7 +14,14 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     #@posts = Post.all
-    @posts = Post.paginate(:page => params[:page], :per_page => 5).order('posts.id DESC')
+
+    if params[:query]
+      q = "%#{params[:query]}%"
+      @posts = Post.paginate(:page => params[:page], :per_page => 5).where("title like ? OR introtext like ? OR description like ? ", q , q, q).order('posts.id DESC')
+      @count = @posts.count
+    else 
+      @posts = Post.paginate(:page => params[:page], :per_page => 5).order('posts.id DESC')
+    end
   end
 
   def category
