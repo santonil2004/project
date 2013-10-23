@@ -2,8 +2,8 @@
 <ul class="nav nav-list">
 <li class="nav-header">Categories</li>
 	<% Category.list_categories.each do |category| %>
-      <li>
-      	<%= link_to category.name.capitalize, "/posts/category/"+category.id.to_s()  %>
+      <li class=<%= 'active' if category.id.to_s()==params[:id] %>>
+      	<%= link_to category.name.capitalize, "/posts/category/"+category.id.to_s() %>
       </li>
     <% end %>
 </ul>

@@ -14,11 +14,12 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     #@posts = Post.all
-    @posts = Post.paginate(:page => params[:page], :per_page => 5)
+    @posts = Post.paginate(:page => params[:page], :per_page => 5).order('posts.id DESC')
   end
 
   def category
-    @posts = Post.includes(:category).where("categories.id" => params[:id])
+    @posts = Post.includes(:category).where("categories.id" => params[:id]).order('posts.id DESC')
+    @category = Category.find(params[:id]);
   end
 
   # GET /posts/1

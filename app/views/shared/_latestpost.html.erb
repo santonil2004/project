@@ -1,0 +1,9 @@
+<!--<%= Category.list_categories.inspect %>-->
+<ul class="nav nav-list">
+<li class="nav-header">Latest Post</li>
+	<% Post.latest_posts.each do |post| %>
+      <li class=<%= 'active' if post.id.to_s()==params[:id] %>>
+      	<%= link_to post.title.capitalize, "/posts/"+post.id.to_s() %>
+      </li>
+    <% end %>
+</ul>

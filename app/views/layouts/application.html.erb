@@ -49,9 +49,10 @@
           <a class="brand" href="/posts">Blog</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Home", "/posts"  %></li>
-              <li><%= link_to "About Us", " /page/aboutus"  %></li>
-              <li><%= link_to "Contact Us", "/page/contactus"  %></li>
+              <li class="<%= 'active' if params[:controller] == 'posts' && params[:action]=='index' %>">
+                <%= link_to "Home", "/posts"  %></li>
+              <li class="<%= 'active' if params[:controller] == 'page' && params[:action]=='aboutus' %>"><%= link_to "About Us", " /page/aboutus"  %></li>
+              <li class="<%= 'active' if params[:controller] == 'page' && params[:action]=='contactus' %>"><%= link_to "Contact Us", "/page/contactus"  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -78,6 +79,10 @@
               <%= link_to 'Sign in', new_user_session_path, class: 'btn bootstrap_flash' %>
             <% end %>
 
+          </div><!--/.well -->
+
+          <div class="well sidebar-nav">
+            <%= render 'shared/latestpost'%>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">

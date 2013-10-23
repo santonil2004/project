@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 
-	def get_latest_posts
-		
+	def self.latest_posts
+		Post.where(:status => 1).order('id DESC').limit('5')
 	end
 end
