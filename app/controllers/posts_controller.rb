@@ -1,11 +1,20 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :is_admin? ,except: [:index, :show, :category]
+
+
+  def is_admin?
+    if !current_user || current_user.group_id!=1
+      redirect_to posts_url, alert: 'Unauthorized User group !'
+    end
+  end
+
 
   # GET /posts
   # GET /posts.json
   def index
     #@posts = Post.all
-    @posts = Post.paginate(:page => params[:page], :per_page => 1)
+    @posts = Post.paginate(:page => params[:page], :per_page => 5)
   end
 
   def category

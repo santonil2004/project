@@ -69,7 +69,10 @@
                 <li class="nav-header">Login</li>
             </ul>
            <% if current_user %>
-              <%= "Logged in as: #{current_user.full_name}" %><Br>
+              <%= "Logged in as: #{current_user.full_name}" %>
+              <Br>
+              <%= "User Group: #{current_user.group_id}" %>
+              <br>
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-mini btn-danger' %>
             <% else %>
               <%= link_to 'Sign in', new_user_session_path, class: 'btn bootstrap_flash' %>
