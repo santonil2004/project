@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!,except: [:index, :show]
 
   # GET /comments
   # GET /comments.json
@@ -21,7 +22,9 @@ class CommentsController < ApplicationController
   def edit
     @post = Post.find(params[:post_id])
 
-    @comment = Comment.find(params[:id])
+    #@comment = Comment.find(params[:id])
+
+    @comment = Comment.where(post_id: params[:post_id], id: params[:id]).first 
     
     # @comment.user_id = current_user.id
   end
@@ -61,7 +64,9 @@ class CommentsController < ApplicationController
 
     @post = Post.find(params[:post_id])
 
-    @comment = Comment.find(params[:id])
+    #@comment = Comment.find(params[:id])
+
+    @comment = Comment.where(post_id: params[:post_id], id: params[:id]).first 
 
     @comment.user_id = current_user.id
 
@@ -79,7 +84,9 @@ class CommentsController < ApplicationController
   def destroy
 
     @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:id])
+    #@comment = Comment.find(params[:id])
+
+    @comment = Comment.where(post_id: params[:post_id], id: params[:id]).first 
 
     if @comment.destroy
         redirect_to(post_url(@post), notice: 'Comment Deleted successfully.')

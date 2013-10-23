@@ -1,10 +1,19 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!,:is_admin?,except: [:index, :show]
+
+
+  def is_admin?
+    if !current_user || current_user.group_id!=1
+      redirect_to categories_url, alert: 'Unauthorized User group !'
+    end
+  end
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    #@categories = Category.all
+    @categories = Category.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /categories/1
@@ -14,7 +23,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+      @category = Category.new
   end
 
   # GET /categories/1/edit
