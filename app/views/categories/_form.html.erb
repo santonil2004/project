@@ -14,8 +14,13 @@
   <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :status, :class => 'text_field' %>
+      <%#= f.text_field :status, :class => 'text_field' %>
+
+      <%= f.select :status, options_for_select([['published', 1], ['unpublished', 0],]) %>
     </div>
+
+    
+
   </div>
 
   <div class="form-actions">

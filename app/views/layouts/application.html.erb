@@ -53,6 +53,10 @@
                 <%= link_to "Home", "/posts"  %></li>
               <li class="<%= 'active' if params[:controller] == 'page' && params[:action]=='aboutus' %>"><%= link_to "About Us", " /page/aboutus"  %></li>
               <li class="<%= 'active' if params[:controller] == 'page' && params[:action]=='contactus' %>"><%= link_to "Contact Us", "/page/contactus"  %></li>
+
+              
+               
+              
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -71,23 +75,20 @@
             <%= render 'shared/categories'%>
           </div><!--/.well -->
 
-            
-
-            <div class="well sidebar-nav">
+          <div class="well sidebar-nav">
             <%= render 'shared/latestpost'%>
           </div><!--/.well -->
 
 
-            <div class="well sidebar-nav">
-              
-
+          <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Login</li>
             </ul>
            <% if current_user %>
               <%= "Logged in as: #{current_user.full_name}" %>
               <Br>
-              <%= "User Group: #{current_user.group_id}" %>
+
+              <%#= "User Group: #{current_user.group_id}" %>
               <br>
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-mini btn-danger' %>
             <% else %>
@@ -95,6 +96,18 @@
             <% end %>
 
           </div><!--/.well -->
+
+          <% if current_user && current_user.group_id==1 %>
+              <div class="well sidebar-nav">
+               <ul class="nav nav-list">
+                <li class="nav-header">Admin Menu</li>
+              
+                <li class="<%= 'active' if params[:controller] == 'categories' && params[:action]=='index' %>">
+                  <%= link_to 'Manage Category', categories_path %>
+                </li>
+                </ul>
+                </div><!--/.well -->
+          <% end %>
 
           
 
